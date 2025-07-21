@@ -8,8 +8,37 @@
   </head>
   <body>
     <div id="app">
-      <h1>Bootcamp JS - JavaScript SandBox</h1>
+      <h1>TIRO DEL DADO</h1>
+
+      <div id="juego">
+        <div id="dado-container">
+          <img
+            src=""
+            alt="imagen del dado. Puede estar vacía"
+            id="imagen-dado"
+          />
+        </div>
+
+        <div id="resultados">
+          <h2>Resultados de los tiros</h2>
+          <p id="historial-tiros"></p>
+        </div>
+
+        <div id="puntuacion">
+          <p>Puntuación acumulada: <span id="puntos">0</span></p>
+        </div>
+
+        <div id="mensaje">
+          <p>MENSAJE: <span id="texto-mensaje"></span></p>
+        </div>
+
+        <div id="botones">
+          <button id="tirar">TIRAR</button>
+          <button id="me-planto">ME PLANTO</button>
+        </div>
+      </div>
     </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
