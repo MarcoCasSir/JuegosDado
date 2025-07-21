@@ -13,20 +13,39 @@ const generarNumeroAleatorio = () => Math.floor(Math.random() * 6) + 1;
 
 /* el ESTADO */
 
-const ES_EL_NUMERO_6 = 0;
-const EL_TOTAL_ES_MENOR_DE_50 = 1;
-const EL_TOTAL_ES_MAYOR_DE_50 = 2;
-const EL_TOTAL_ES_IGUAL_A_50 = 3;
+const EL_TOTAL_ES_MENOR_DE_50 = 0;
+const EL_TOTAL_ES_MAYOR_DE_50 = 1;
+const EL_TOTAL_ES_IGUAL_A_50 = 2;
+const GAME_OVER = 3;
 
 const tirarDado = () => {
   const resultado = generarNumeroAleatorio();
-  console.log("Resultado del dado:", resultado);
 
-  if (resultado === 6) {
-    console.log("has perdido");
-  } else resultado != 6;
-  console.log("continua");
+  mostarImagenDado(resultado);
 };
 
 const botonTirarDado = document.getElementById("tirar");
 botonTirarDado.addEventListener("click", tirarDado);
+
+const mostarImagenDado = (resultado) => {
+  switch (resultado) {
+    case 1:
+      document.getElementById("imagen-dado").src = "src/img/cara1.png";
+      break;
+    case 2:
+      document.getElementById("imagen-dado").src = "src/img/cara2.png";
+      break;
+    case 3:
+      document.getElementById("imagen-dado").src = "src/img/cara3.png";
+      break;
+    case 4:
+      document.getElementById("imagen-dado").src = "src/img/cara4.png";
+      break;
+    case 5:
+      document.getElementById("imagen-dado").src = "src/img/cara5.png";
+      break;
+    case 6:
+      document.getElementById("imagen-dado").src = "src/img/cara6.png";
+      break;
+  }
+};
