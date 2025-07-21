@@ -18,15 +18,19 @@ const EL_TOTAL_ES_MAYOR_DE_50 = 1;
 const EL_TOTAL_ES_IGUAL_A_50 = 2;
 const GAME_OVER = 3;
 
+/* ------------------------------------------------------FUNCION TIRAR DADOS ------------------------------*/
 const tirarDado = () => {
   const resultado = generarNumeroAleatorio();
 
   mostarImagenDado(resultado);
+  mostraMensaje(resultado);
 };
 
+/* ------------------------------------------------------BOTON ENVIAR --------------------------------------*/
 const botonTirarDado = document.getElementById("tirar");
 botonTirarDado.addEventListener("click", tirarDado);
 
+/* ------------------------------------------------------FUNCION MOSTRAR DADOS ------------------------------*/
 const mostarImagenDado = (resultado) => {
   switch (resultado) {
     case 1:
@@ -49,3 +53,17 @@ const mostarImagenDado = (resultado) => {
       break;
   }
 };
+
+/* ------------------------------------------------------FUNCION MOSTRAR MENSAJE ------------------------------*/
+
+const mostraMensaje = (resultado) => {
+  const mensajeElement = document.getElementById("mensaje-despues-tiros");
+
+  if (resultado != 6) {
+    mensajeElement.textContent = " Bien!!! Ahora decides: TIRAS O TE PLANTAS";
+  } else {
+    mensajeElement.textContent = "Has sacado un 6. GAME OVER";
+  }
+};
+
+/* -------------------------------------------------FUNCION PARA ACUMULAR PUNTOS-------------------------------*/
