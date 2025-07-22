@@ -4,19 +4,18 @@ import "./style.css";
 
 const generarNumeroAleatorio = () => Math.floor(Math.random() * 6) + 1;
 
-/*
- - una funcion de tirar   ---   para generar el número aleatorio y manejar la lógica de perder si sale un 6.
- - una funcion de mostrar el numero   --- para actualizar la imagen del dado y el historial.
- - una funcion me planto   --- para permitir que el jugador termine la partida voluntariamente.
- - una funcion mostrar puntos totales.  --- para actualizar la puntuación acumulada y comprobar si ha ganado.
-*/
+document.addEventListener("DOMContentLoaded", () => {
+  inicio();
+  eventos();
+});
 
-/* el ESTADO */
+/* ------------------------------------------------------FUNCION INICIO ------------------------------*/
 
-const EL_TOTAL_ES_MENOR_DE_50 = 0;
-const EL_TOTAL_ES_MAYOR_DE_50 = 1;
-const EL_TOTAL_ES_IGUAL_A_50 = 2;
-const GAME_OVER = 3;
+const inicio = () => {
+  const inicioPuntuacion = 0;
+  document.getElementById("imagen-dado").src = "src/img/cara1.png";
+  document.getElementById("puntos").textContent = inicioPuntuacion;
+};
 
 /* ------------------------------------------------------FUNCION TIRAR DADOS ------------------------------*/
 const tirarDado = () => {
@@ -110,11 +109,10 @@ const estadoPartida = (nuevaPuntuacion) => {
 /* -------------------------------------------------FUNCION REINICIO DE LA PARTIDA-------------------------------*/
 
 const reiniciarJuego = () => {
-  generarNumeroAleatorio();
+  inicio();
 
   document.getElementById("mensaje-despues-tiros").textContent = "";
-  document.getElementById("puntos").textContent = "";
-
+  document.getElementById("imagen-dado").src = "src/img/cara1.png";
   document.getElementById("tirar").disabled = false;
   document.getElementById("me-planto").disabled = false;
 };
@@ -129,11 +127,14 @@ const handleCompruebaClick = () => {
 };
 
 /* ------------------------------------------------------BOTON ENVIAR --------------------------------------*/
-const botonTirarDado = document.getElementById("tirar");
-botonTirarDado.addEventListener("click", handleCompruebaClick);
 
-const botonMePlanto = document.getElementById("me-planto");
-botonMePlanto.addEventListener("click", mePlanto);
+function eventos() {
+  const botonTirarDado = document.getElementById("tirar");
+  botonTirarDado.addEventListener("click", handleCompruebaClick);
 
-const botonReinicio = document.getElementById("reiniciar");
-botonReinicio.addEventListener("click", reiniciarJuego);
+  const botonMePlanto = document.getElementById("me-planto");
+  botonMePlanto.addEventListener("click", mePlanto);
+
+  const botonReinicio = document.getElementById("reiniciar");
+  botonReinicio.addEventListener("click", reiniciarJuego);
+}
