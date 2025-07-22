@@ -4,16 +4,23 @@ import "./style.css";
 
 const generarNumeroAleatorio = () => Math.floor(Math.random() * 6) + 1;
 
-/* carga de inicio  y botyonera*/
-
 let imagenDado;
 let puntosElement;
 let mensajeElement;
+
+let botonMePlanto;
+let botonReinicio;
+let botonTirarDado;
+
+/* carga de inicio  y botyonera*/
 
 document.addEventListener("DOMContentLoaded", () => {
   imagenDado = document.getElementById("imagen-dado");
   puntosElement = document.getElementById("puntos");
   mensajeElement = document.getElementById("mensaje-despues-tiros");
+  botonReinicio = document.getElementById("tirar");
+  botonMePlanto = document.getElementById("me-planto");
+  botonTirarDado = document.getElementById("tirar");
   inicio();
   eventos();
 });
@@ -36,8 +43,8 @@ const tirarDado = () => {
 const mePlanto = () => {
   mensajeElement.textContent = `La partida ha terminado. Tu puntuacion es  ${puntosElement.textContent}`;
 
-  document.getElementById("tirar").disabled = true;
-  document.getElementById("me-planto").disabled = true;
+  botonReinicio.disabled = true;
+  botonMePlanto.disabled = true;
 };
 
 /* ------------------------------------------------------FUNCION MOSTRAR DADOS ------------------------------*/
@@ -84,8 +91,8 @@ const sumarPuntos = (resultado) => {
 
     estadoPartida(nuevaPuntuacion);
   } else {
-    document.getElementById("tirar").disabled = true;
-    document.getElementById("me-planto").disabled = true;
+    botonTirarDado.disabled = true;
+    botonMePlanto.disabled = true;
 
     mensajeElement.textContent = `LO SIENTO !!! ha salido el  ${resultado} GAME - OVER `;
   }
@@ -95,12 +102,12 @@ const sumarPuntos = (resultado) => {
 const estadoPartida = (nuevaPuntuacion) => {
   if (nuevaPuntuacion > 50) {
     mensajeElement.textContent = `ENHORABUENA!!!!! HAS GANADO LA PARTIDA CON ${nuevaPuntuacion} puntos`;
-    document.getElementById("tirar").disabled = true;
-    document.getElementById("me-planto").disabled = true;
+    botonTirarDado.disabled = true;
+    botonMePlanto.disabled = true;
   } else if (nuevaPuntuacion === 50) {
     mensajeElement.textContent = `Bestial !!!!! HAS GANADO con  ${nuevaPuntuacion} puntos exactos`;
-    document.getElementById("tirar").disabled = true;
-    document.getElementById("me-planto").disabled = true;
+    botonTirarDado.disabled = true;
+    botonMePlanto.disabled = true;
   }
 };
 
@@ -111,8 +118,8 @@ const reiniciarJuego = () => {
 
   mensajeElement.textContent = "";
   imagenDado.src = "src/img/cara1.png";
-  document.getElementById("tirar").disabled = false;
-  document.getElementById("me-planto").disabled = false;
+  botonTirarDado.disabled = false;
+  botonMePlanto.disabled = false;
 };
 
 /* ----------------------------------------------GESTION DEL JUEGO-----------------------------------*/
