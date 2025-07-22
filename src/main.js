@@ -20,15 +20,20 @@ const GAME_OVER = 3;
 
 /* ------------------------------------------------------FUNCION TIRAR DADOS ------------------------------*/
 const tirarDado = () => {
-  const resultado = generarNumeroAleatorio();
-
-  mostarImagenDado(resultado);
-  mostraMensaje(resultado);
+  return generarNumeroAleatorio();
 };
 
-/* ------------------------------------------------------BOTON ENVIAR --------------------------------------*/
-const botonTirarDado = document.getElementById("tirar");
-botonTirarDado.addEventListener("click", tirarDado);
+/* ------------------------------------------------------FUNCION ME PLANTO ----------------------------------*/
+
+const mePlanto = () => {
+  const mensajeElement = document.getElementById("mensaje-despues-tiros");
+  const puntos = document.getElementById("puntos").textContent;
+
+  mensajeElement.textContent = `La partida ha terminado. Tu puntuacion es  ${puntos}`;
+
+  document.getElementById("tirar").disabled = true;
+  document.getElementById("me-planto").disabled = true;
+};
 
 /* ------------------------------------------------------FUNCION MOSTRAR DADOS ------------------------------*/
 const mostarImagenDado = (resultado) => {
@@ -60,10 +65,69 @@ const mostraMensaje = (resultado) => {
   const mensajeElement = document.getElementById("mensaje-despues-tiros");
 
   if (resultado != 6) {
-    mensajeElement.textContent = " Bien!!! Ahora decides: TIRAS O TE PLANTAS";
+    mensajeElement.textContent = `BIEN !!!! ha salido ${resultado} TE ATREVES A SEGUIR ?`;
   } else {
-    mensajeElement.textContent = "Has sacado un 6. GAME OVER";
+    mensajeElement.textContent = `LO SIENTO !!! ha salido ${resultado} GAME - OVER `;
   }
 };
 
 /* -------------------------------------------------FUNCION PARA ACUMULAR PUNTOS-------------------------------*/
+
+const sumarPuntos = (resultado) => {
+  if (resultado != 6) {
+    const puntos = document.getElementById("puntos");
+    let puntuacionActual = parseInt(puntos.textContent);
+    let nuevaPuntuacion = puntuacionActual + resultado;
+    puntos.textContent = nuevaPuntuacion;
+
+    estadoPartida(nuevaPuntuacion);
+  } else {
+    document.getElementById("tirar").disabled = true;
+    document.getElementById("me-planto").disabled = true;
+
+    document.getElementById(
+      "mensaje-despues-tiros"
+    ).textContent = `LO SIENTO !!! ha salido el  ${resultado} GAME - OVER `;
+  }
+};
+
+/* -------------------------------------------------FUNCION CONTROL ESTADO PARTIDA-------------------------------*/
+
+const estadoPartida = (nuevaPuntuacion) => {
+  const mensajeElement = document.getElementById("mensaje-despues-tiros");
+
+  if (nuevaPuntuacion > 10) {
+    mensajeElement.textContent = `ENHORABUENA!!!!! HAS GANADO LA PARTIDA CON ${nuevaPuntuacion} puntos`;
+    document.getElementById("tirar").disabled = true;
+    document.getElementById("me-planto").disabled = true;
+  } else if (nuevaPuntuacion === 10) {
+    mensajeElement.textContent = `Bestial !!!!! HAS GANADO con  ${nuevaPuntuacion} puntos exactos`;
+    document.getElementById("tirar").disabled = true;
+    document.getElementById("me-planto").disabled = true;
+  }
+};
+
+/* -------------------------------------------------FUNCION REINICIO DE LA PARTIDA-------------------------------*/
+
+/*const reiniciarJuego = () => {
+  generarNumeroAleatorio();
+
+  document.getElementById("mensaje-despues-tiros").textContent = "";
+  document.getElementById("puntos").textContent = "";
+};*/
+
+/* ----------------------------------------------GESTION DEL JUEGO-----------------------------------*/
+
+const handleCompruebaClick = () => {
+  const resultado = tirarDado();
+  mostarImagenDado(resultado);
+  mostraMensaje(resultado);
+  sumarPuntos(resultado);
+};
+
+/* ------------------------------------------------------BOTON ENVIAR --------------------------------------*/
+const botonTirarDado = document.getElementById("tirar");
+botonTirarDado.addEventListener("click", handleCompruebaClick);
+
+/*const botonReinicio = document.getElementById("reiniciar");
+botonReinicio.addEventListener("click", reiniciarJuego);*/
