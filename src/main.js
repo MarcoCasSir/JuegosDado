@@ -96,11 +96,11 @@ const sumarPuntos = (resultado) => {
 const estadoPartida = (nuevaPuntuacion) => {
   const mensajeElement = document.getElementById("mensaje-despues-tiros");
 
-  if (nuevaPuntuacion > 10) {
+  if (nuevaPuntuacion > 50) {
     mensajeElement.textContent = `ENHORABUENA!!!!! HAS GANADO LA PARTIDA CON ${nuevaPuntuacion} puntos`;
     document.getElementById("tirar").disabled = true;
     document.getElementById("me-planto").disabled = true;
-  } else if (nuevaPuntuacion === 10) {
+  } else if (nuevaPuntuacion === 50) {
     mensajeElement.textContent = `Bestial !!!!! HAS GANADO con  ${nuevaPuntuacion} puntos exactos`;
     document.getElementById("tirar").disabled = true;
     document.getElementById("me-planto").disabled = true;
@@ -109,12 +109,15 @@ const estadoPartida = (nuevaPuntuacion) => {
 
 /* -------------------------------------------------FUNCION REINICIO DE LA PARTIDA-------------------------------*/
 
-/*const reiniciarJuego = () => {
+const reiniciarJuego = () => {
   generarNumeroAleatorio();
 
   document.getElementById("mensaje-despues-tiros").textContent = "";
   document.getElementById("puntos").textContent = "";
-};*/
+
+  document.getElementById("tirar").disabled = false;
+  document.getElementById("me-planto").disabled = false;
+};
 
 /* ----------------------------------------------GESTION DEL JUEGO-----------------------------------*/
 
@@ -129,5 +132,8 @@ const handleCompruebaClick = () => {
 const botonTirarDado = document.getElementById("tirar");
 botonTirarDado.addEventListener("click", handleCompruebaClick);
 
-/*const botonReinicio = document.getElementById("reiniciar");
-botonReinicio.addEventListener("click", reiniciarJuego);*/
+const botonMePlanto = document.getElementById("me-planto");
+botonMePlanto.addEventListener("click", mePlanto);
+
+const botonReinicio = document.getElementById("reiniciar");
+botonReinicio.addEventListener("click", reiniciarJuego);
