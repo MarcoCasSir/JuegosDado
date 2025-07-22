@@ -1,6 +1,6 @@
 # DESAROLLO DE UN JUEGO DE DADOS
 
-## Estructura de desarrollo
+## Pasos realizados. Como he ido desarrollando la aplicacion.
 
 - Defino estructura del HTML ( espacio para: foto / punturacion /mensaje y botones)
 - Creo variable para crear un numero aleatorio
@@ -15,7 +15,7 @@
 - Refactorizcion del codigo para mejor legibilida y evitar que los elementos del dom se carguen a cada llamada de la funcion.
 - Posibles mejoras a desarrollar : 1)Registro de jugadas.2) Ver la posibilidad de comparar dos partida para el mismo jugador o 3) Que puedan jugar dos jugadore. 4)Posibilidad de definir los limites del numero a alcanzar para partidas mas rapidas.
 
-### Descripcion de cada funcion
+## Descripcion de cada funcion
 
 #### tirarDado
 
@@ -23,17 +23,17 @@ La funcion se encarga de devolver la variable que contiene el numero aleatorio q
 
 #### mostrarImagenDado
 
-La funcion recibe la variable resultado donde se guarda el nuemro aleatrio generado en la funcion tirarDado.
-En funcion del numero ( tenemos 6 opciones) se esstablece un switch para mostrar la imagen correspondiente.
+La funcion recibe la variable resultado donde se guarda el numero aleatorio generado en la funcion tirarDado.
+En funcion del numero ( tenemos 6 opciones) se establece un switch para mostrar la imagen correspondiente.
 
 #### mePlanto
 
-La funcion modifica el texto del mensaje indicando qeu la partida se termian y la puntuacion alcanzada.
-Anula los botones de tirar y el mismo de mePlanto, dejando libre solo el de nueva partida.
+La funcion modifica el texto del mensaje indicando que la partida se termina y la puntuacion alcanzada.
+Anula los botones de TIRAR y el mismo de MEPLANTO, dejando libre solo el de NUEVA.
 
 #### mostrarMensaje
 
-La funcnion se encarga de mostra el mensaje en funcion del valro conenido en la variable resultado.
+La funcion se encarga de mostra el mensaje en funcion del valor contenido en la variable resultado.
 
 #### sumaPunto
 
@@ -41,13 +41,13 @@ En funcion de la variable resultado que recibe, parsea el contenido de tipo stri
 
 #### reinicioJuego
 
-la funcion llama a la funcion de inicio para mostrar la primera visualizacion, refrescando mensajes, imagen y puntuacion
+La funcion llama a la funcion de inicio para mostrar la primera visualizacion, refrescando mensajes, imagen y puntuacion
 
 #### handleCompruebaClick
 
-Es la funcion que se encarga de los movimientos principales al teclear el boton tirar.
+Es la funcion que se encarga de los movimientos principales al teclear el boton TIRAR.
 Construiye el resultado inicial, muestra la imagen,el mensaje y la suma .
 
-### inicio
+#### inicio
 
 Es la funcion que se encarga de mostra la configuracion visual del inicio del juego
